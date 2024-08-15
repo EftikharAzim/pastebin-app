@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pastebin</title>
+    <script>
+        function confirmDelete() {
+            return confirm("Are you sure you want to delete this paste? This action cannot be undone.");
+        }
+    </script>
+</head>
+<body>
+    <h1>Your Paste</h1>
+    <p>{{ paste.content }}</p>
+    <p>URL: <a href="{{ url_for('show_paste', paste_id=paste.id) }}">{{ request.url_root }}paste/{{ paste.id }}</a></p>
+    
+    {% if paste.expiration_date %}
+    <p><strong>Expiration Date:</strong> {{ paste.expiration_date.strftime('%Y-%m-%d %H:%M:%S') }} UTC</p>
+    {% else %}
+    <p><strong>Expiration Date:</strong> No expiration</p>
+    {% endif %}
+    
+    <form method="POST" action="" onsubmit="return confirmDelete();">
+        <button type="submit" name="delete">Delete</button>
+    </form>
+</body>
+</html>
