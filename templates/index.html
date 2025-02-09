@@ -1,9 +1,49 @@
-<form method="POST" action="">
-    <label for="content">Paste your content:</label>
-    <textarea id="content" name="content" required></textarea><br>
-    
-    <label for="expiration">Expiration (days):</label>
-    <input type="number" id="expiration" name="expiration" min="1" placeholder="Leave empty for no expiration"><br>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Create New Paste</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/style.css') }}"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Create New Paste</h1>
 
-    <button type="submit">Submit</button>
-</form>
+      {% with messages = get_flashed_messages(with_categories=True) %} {% if
+      messages %}
+      <div class="flash-messages" role="alert">
+        {% for category, message in messages %}
+        <div class="flash-message {{ category }}">{{ message }}</div>
+        {% endfor %}
+      </div>
+      {% endif %} {% endwith %}
+
+      <form method="POST">
+        <div class="form-group">
+          <label for="content">Paste your content:</label>
+          <textarea
+            id="content"
+            name="content"
+            required
+            placeholder="Enter your text here..."
+          ></textarea>
+        </div>
+        <div class="form-group">
+          <label for="expiration">Expiration (days):</label>
+          <input
+            type="number"
+            id="expiration"
+            name="expiration"
+            min="1"
+            placeholder="Leave empty for no expiration"
+          />
+        </div>
+        <button type="submit">Create Paste</button>
+      </form>
+    </div>
+  </body>
+</html>
