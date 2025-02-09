@@ -16,3 +16,4 @@ A simple Pastebin-like application built with Flask and SQLite.
    git clone <repository_url>
    cd pastebin-app
    ```
+Live at: https://pastebin-app-3lmn.onrender.com
